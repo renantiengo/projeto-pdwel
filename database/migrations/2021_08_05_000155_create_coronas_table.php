@@ -1,3 +1,4 @@
+                    
 <?php
 
 use Illuminate\Database\Migrations\Migration;
@@ -15,6 +16,9 @@ class CreateCoronasTable extends Migration
     {
         Schema::create('coronas', function (Blueprint $table) {
             $table->id();
+            $table->string('country_name');
+            $table->string('symptoms');
+            $table->integer('cases');
             $table->timestamps();
         });
     }
@@ -29,3 +33,4 @@ class CreateCoronasTable extends Migration
         Schema::dropIfExists('coronas');
     }
 }
+
