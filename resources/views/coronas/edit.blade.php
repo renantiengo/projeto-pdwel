@@ -4,7 +4,7 @@
 
 @push('css')
 <style>
-    /* Personalizar layout*/
+    /*layout*/
 </style>
 @endpush
 
