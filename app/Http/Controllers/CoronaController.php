@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Corona;
 
 class CoronaController extends Controller
 {
@@ -13,7 +14,8 @@ class CoronaController extends Controller
      */
     public function index()
     {
-        //
+        $coronacases = Corona::all();
+        return view('coronas.index', compact('coronacases'));
     }
 
     /**
@@ -23,7 +25,7 @@ class CoronaController extends Controller
      */
     public function create()
     {
-        //
+        return view('coronas.create');
     }
 
     /**
@@ -34,7 +36,13 @@ class CoronaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'country_name' => 'required|max:255',
+            'symptoms' => 'required',
+            'cases' => 'required|numeric',
+        ]);
+        $show = Corona::create($validatedData);
+        return redirect('/coronas')->with('success', 'Dados de Corona adicionado com sucesso!');
     }
 
     /**
@@ -45,7 +53,8 @@ class CoronaController extends Controller
      */
     public function show($id)
     {
-        //
+        $coronacase = Corona::findOrFail($id);
+        return view('coronas.show',compact('coronacase'));
     }
 
     /**
@@ -56,7 +65,8 @@ class CoronaController extends Controller
      */
     public function edit($id)
     {
-        //
+        $coronacase = Corona::findOrFail($id);
+        return view('coronas.edit', compact('coronacase'));
     }
 
     /**
@@ -68,7 +78,13 @@ class CoronaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validatedData = $request->validate([
+            'country_name' => 'required|max:255',
+            'symptoms' => 'required',
+            'cases' => 'required|numeric',
+        ]);
+        Corona::whereId($id)->update($validatedData);
+        return redirect('/coronas')->with('success', 'Dados de Corona atualizado com sucesso!');
     }
 
     /**
@@ -79,6 +95,8 @@ class CoronaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $coronacase = Corona::findOrFail($id);
+        $coronacase->delete();
+        return redirect('/coronas')->with('success', 'Dados de Corona removido com sucesso!');
     }
 }
