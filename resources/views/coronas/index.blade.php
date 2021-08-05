@@ -1,6 +1,6 @@
 @extends('coronas.layout')
 
-@section('title',__('Corona (CRUD Laravel) - i9W3b'))
+@section('title',__(' '))
 
 @push('css')
 <style>
@@ -15,7 +15,7 @@
             <div class="card">
                 <div class="card-header">
                     <div class="d-flex justify-content-between w-100">
-                        <span>@lang('Corona (CRUD Laravel) - i9W3b')</span>
+                        <span>@lang('Corona')</span>
                         <a href="{{ url('coronas/create') }}" class="btn-primary btn-sm">
                             <i class="fa fa-plus"></i> @lang('Criar Novo')
                         </a>
@@ -27,7 +27,7 @@
                         {{ session('success') }}
                     </div>
                     @endif
-
+                <div class="table-responsive">
                     <table class="table table-bordered">
                         <thead>
                             <tr>
@@ -66,7 +66,7 @@
                             @endforeach
                         </tbody>
                     </table>
-
+                </div>
                 </div>
             </div>
         </div>
@@ -76,6 +76,6 @@
 
 @push('js')
 <script>
-    /*Script*/ 
+    /*Script*/
 </script>
 @endpush
